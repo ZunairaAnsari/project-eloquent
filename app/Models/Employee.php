@@ -15,4 +15,6 @@ class Employee extends Model
         'age',
         'city'
     ];
+    public $timestamps = false;
+
 }

@@ -1,11 +1,11 @@
 @extends('layout')
 
 @section('title')
-    Add New Employee
+    <h1 style="font-family: Raleway;">Add New Employee</h1>
 @endsection
 
 @section('content')
-<div class="container mt-5">
+{{-- <div class="container mt-5">
     <div class="row d-flex justify-content-center align-items-center">
         <div class="col-md-8">
             <form id="regForm">
@@ -61,6 +61,35 @@
             </form>
         </div>
     </div>
+</div> --}}
+<div class="container" style="width: 700px">
+<form action="{{ route('employee.store')}}" method="POST">
+    @csrf
+    <div class="mb-3 mt-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="salary" class="form-label">Salary:</label>
+        <input type="text" class="form-control" id="salary" placeholder="Enter salary" name="salary">
+      </div>
+
+      <div class="mb-3 mt-3">
+        <label for="age" class="form-label">Age:</label>
+        <input type="text" class="form-control" id="age" placeholder="Enter age" name="age">
+      </div>
+      <div class="mb-3 mt-3">
+        <label for="city" class="form-label">City:</label>
+        <input type="text" class="form-control" id="city" placeholder="Enter city" name="city">
+      </div>
+    <button type="submit" class="btn btn-outline-success">Submit</button>
+  </form>
 </div>
 
 @endsection

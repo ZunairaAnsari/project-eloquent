@@ -35,15 +35,25 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:employees',
+            'salary' => 'required|numeric',
+            'city' => 'required|max:255',
+        ]);
+
+        Employee::create($request->all());
+
+        return redirect()->route('employee.index')->with('message', 'Employee created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show($employee)
     {
-        //
+        $employee = Employee::findOrFail($employee);
+        return view('view', compact('employee'));
     }
 
     /**
@@ -51,15 +61,25 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('edit', compact('employee'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, Employee $employee,)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:employees,email,'.$employee->id,
+            'salary' => 'required|numeric',
+            'city' => 'required|max:255',
+        ]);
+
+        $employee->update($request->all());
+
+        return redirect()->route('employee.index')->with('message', 'Employee updated successfully.');
     }
 
     /**
@@ -67,6 +87,8 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
-        //
+
+        $employee->delete();
+        return redirect()->route('employee.index')->with('message', 'Employee deleted successfully.');
     }
 }

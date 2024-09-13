@@ -21,6 +21,14 @@
     border-radius: 10px
 }
 
+#regForm2 {
+    background-color: #ffffff;
+    margin: 0px auto;
+    font-family: Raleway;
+    padding: 10px;
+    border-radius: 10px
+}
+
 #register{
 
   color: #6A1B9A;
